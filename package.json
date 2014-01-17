@@ -1,0 +1,30 @@
+{
+  "name": "seven",
+  "version": "0.0.1",
+  "description": "Data does reach the shredding process..",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:cobaimelan/seven.git"
+  },
+  "keywords": [
+    "request",
+    "process"
+  ],
+  "license": "BSD-2-Clause",
+  "dependencies": {
+    "request": "2.27.0",
+    "yi-regex": "1.0.0"
+  },
+  "engines": [
+    "node >= 0.8.0"
+  ],
+  "bugs": {
+    "url": "https://github.com/cobaimelan/seven/issues"
+  },
+  "scripts": {
+    "test": "mocha test.js"
+  },
+  "author": "Ayhan Kuru <ayhankuru@yandex.com.tr>",
+  "devDependencies": {}
+}
