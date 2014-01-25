@@ -32,7 +32,11 @@ seven.prototype.play = function(url,fn) {
 
 
 seven.prototype.matchall=function(data,start,end){
-	return data.match(new RegExp(start+"(.*?)"+end,"g"));
+	try {
+   return data.match(new RegExp(start+"(.*?)"+end,"g"));
+  } catch (e) {
+   return null;
+  }
 					  
 }
 
@@ -78,27 +82,27 @@ seven.prototype.attr=function(data,attr){
 	var result;
 	switch(attr){
 		case "id":
-			result = Regex.matchAll(/ id="(.*?)"/g, data);
+			result = Regex.matchAll(/id="(.*?)"/g, data);
 		break;
 
 		case "class":
-			result = Regex.matchAll(/ class="(.*?)"/g, data);
+			result = Regex.matchAll(/class="(.*?)"/g, data);
 		break;
 
 		case "src":
-			result = Regex.matchAll(/ src="(.*?)"/g, data);
+			result = Regex.matchAll(/src="(.*?)"/g, data);
 		break;
 
 		case "href":
-			result = Regex.matchAll(/ href="(.*?)"/g, data);
+			result = Regex.matchAll(/href="(.*?)"/g, data);
 		break;
 
 		case "all": 
-			result = Regex.matchAll(/(class|id|data|data-*?)*?["|'](.*?)["|']/g,data);
+			result = Regex.matchAll(/(data-*?|class|id|data|src|href|title)*?["|'](.*?)["|']/g,data);
 	    break;
-	    case "data": 
-			result = Regex.matchAll(/(data-*?)*?["|'](.*?)["|']/g,data);
-	    break;
+	    case "title": 
+			result = Regex.matchAll(/title="(.*?)"/g, data);
+		break;
 	    default:
 	    	result=null;
 	    break;	
@@ -106,5 +110,9 @@ seven.prototype.attr=function(data,attr){
 
 	return result;
 }
+
+String.prototype.clear=function(){
+  return this.replace(/<\/?[^>]+(>|$)/g, "");
+};
 
 module.exports =seven;
