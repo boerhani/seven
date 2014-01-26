@@ -1,8 +1,9 @@
-var request,fs,Regex;
+var request,fs,Regex,strip;
 
 request = require('request')
 fs = require('fs');
 Regex = require('yi-regex');
+strip=require('./lib/strip');
 
 function seven(headers) {
 	if(headers){
@@ -111,8 +112,18 @@ seven.prototype.attr=function(data,attr){
 	return result;
 }
 
-String.prototype.clear=function(){
-  return this.replace(/<\/?[^>]+(>|$)/g, "");
+String.prototype.clear=function(allowed){
+	if(allowed){		
+ 	 return strip(this,allowed);	
+	}else{
+	 return strip(this);	
+	}
+
 };
 
-module.exports =seven;
+module.exports =function(headers){
+
+	if(headers) return new seven(headers);
+	else return new seven();
+
+};
