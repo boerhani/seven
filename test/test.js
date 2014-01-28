@@ -1,10 +1,10 @@
-var seven = require('./index.js');
+var seven = require('../index.js');
 var expect = require('expect.js');
 
 
 
 describe('Crop oluşturulur', function () {  
-	  var go = new seven();
+	  var go = seven();
 	  it('İstek gönderilir..', function () {
 		  go.play('https://news.ycombinator.com/',function(err,data,res){
 			expect(err).to.not.exist;
@@ -24,3 +24,5 @@ describe('Crop oluşturulur', function () {
 	});
 
 });
+
+

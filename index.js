@@ -1,9 +1,11 @@
-var request,fs,Regex,strip;
+var request,fs,Regex,strip,pattern,tagfinder,
 
 request = require('request')
 fs = require('fs');
 Regex = require('yi-regex');
 strip=require('./lib/strip');
+pattern=require('./lib/pattern');
+tagfinder=require('tagfinder');
 
 function seven(headers) {
 	if(headers){
@@ -15,6 +17,7 @@ function seven(headers) {
 				   "user-agent" : "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_6_8) AppleWebKit/537.13+ (KHTML, like Gecko) Version/5.1.7 Safari/534.57.2"
 				  }	
 	}
+	this.pattern =pattern;
 	return  this;
 }
 
@@ -79,38 +82,34 @@ seven.prototype.out=function(dir,data,fn){
 	}
 }
 
+seven.prototype.patkey=function(x){
+  var b =Object.keys(x);
+  var y ={};
+      y[b]=x[b];
+  this.pattern.push(y);
+  
+  return this;
+}
+
 seven.prototype.attr=function(data,attr){
 	var result;
-	switch(attr){
-		case "id":
-			result = Regex.matchAll(/id="(.*?)"/g, data);
-		break;
-
-		case "class":
-			result = Regex.matchAll(/class="(.*?)"/g, data);
-		break;
-
-		case "src":
-			result = Regex.matchAll(/src="(.*?)"/g, data);
-		break;
-
-		case "href":
-			result = Regex.matchAll(/href="(.*?)"/g, data);
-		break;
-
-		case "all": 
-			result = Regex.matchAll(/(data-*?|class|id|data|src|href|title)*?["|'](.*?)["|']/g,data);
-	    break;
-	    case "title": 
-			result = Regex.matchAll(/title="(.*?)"/g, data);
-		break;
-	    default:
+	for (var i = this.pattern.length - 1; i >= 0; i--) {
+   		 var b =Object.keys(this.pattern[i]);
+	    if(b == attr){
+	      result = Regex.matchAll(this.pattern[i][b], data);
+	      break;
+	    }else{
 	    	result=null;
-	    break;	
-	}
-
-	return result;
+	    }
+  	}
+  	return result;
 }
+
+
+seven.prototype.tags = function(data) {
+	return tagfinder.decomposeHtml(data).tags;
+};
+
 
 String.prototype.clear=function(allowed){
 	if(allowed){		
