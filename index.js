@@ -29,7 +29,7 @@ seven.prototype.play = function(url,fn) {
 	    }else{
 	    	var resp ={headers:response.headers,
 	    				status:response.statusCode}
-	    	fn(null,body.replace(/[\n\t\r]/g,""),resp);
+	    	fn(null,body,resp);
 	    }
 	});
 };
@@ -44,10 +44,10 @@ seven.prototype.matchall=function(data,start,end){
 					  
 }
 
-seven.prototype.out=function(dir,data,fn){
-	if(typeof dir =="object"){
-			if(dir.clear){
-				fs.writeFile(dir.dir, dir.chunk, function(err) {
+seven.prototype.out=function(obj){
+	if(typeof obj =="object"){
+			if(obj.clear){
+				fs.writeFile(obj.dir, obj.chunk, function(err) {
 				    if(data){
 				    	if(err) {
 					       data(err);
@@ -58,7 +58,7 @@ seven.prototype.out=function(dir,data,fn){
 				}); 
 
 			}else{
-				fs.writeFile(dir.dir, dir.chunk, function(err) {
+				fs.writeFile(dir.dir, dir.chunk.replace(/[\n\t\r]/g,""), function(err) {
 				    if(data){
 				    	if(err) {
 					       data(err);
@@ -68,21 +68,10 @@ seven.prototype.out=function(dir,data,fn){
 				    }
 				}); 
 			}
-	}else{
-
-		fs.writeFile(dir, data, function(err) {
-				    if(fn){
-				    	if(err) {
-					       fn(err);
-					    } else {
-					       fn(null,"The file was saved!");
-					    }
-				    }
-				}); 	
 	}
 }
 
-seven.prototype.patkey=function(x){
+seven.prototype.attrkey=function(x){
   var b =Object.keys(x);
   var y ={};
       y[b]=x[b];
