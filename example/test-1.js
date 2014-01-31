@@ -10,8 +10,8 @@ test.play('https://news.ycombinator.com/',function(err,data){
 		log(title +"  -  "+url);
 		log();
 		log(clas)
-		log(tags);
-
-		test.out({dir:"body.txt",chunk:data,clear:true});
+		log(tags)		test.out({dir:"body.txt",chunk:data,clear:true});
 		test.out({dir:"post.txt",chunk:post});
+
+		
 });
