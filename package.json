@@ -14,7 +14,10 @@
   "license": "BSD-2-Clause",
   "dependencies": {
     "request": "2.27.0",
-    "yi-regex": "1.0.0"
+    "yi-regex": "1.0.0",
+    "tagfinder":"0.1.2",
+    "mini-html-parser":"0.0.1",
+    "debug":"0.7.4"
   },
   "engines": [
     "node >= 0.8.0"
