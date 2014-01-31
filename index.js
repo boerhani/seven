@@ -11,7 +11,7 @@ var Regex = require('yi-regex');
 var strip=require('./lib/strip');
 var pattern=require('./lib/pattern');
 var tagfinder=require('tagfinder');
-var parser=require('mini-html-parser');
+var htmlparser=require('htmlparser');
 var debug = require('debug')('Seven')
 
 /**
@@ -171,10 +171,22 @@ seven.prototype.tags = function(data) {
 	}
 };
 
-//Test function
-//seven.prototype.dom = function(data) {
-//	return parser(data).parse();
-//};
+/**
+ * Seven Dom 
+ * @param {String} data
+ * @return {Object}
+ */
+seven.prototype.dom = function(data) {
+	if(typeof data =="string"){ // check arguments
+		debug('Dom tags'); 
+		var handler = new htmlparser.DefaultHandler();
+		var parser = new htmlparser.Parser(handler);
+		parser.parseComplete(data);
+		return JSON.stringify(handler.dom, null, 2);
+	}else{
+		 console.error(new Error('Check arguments! [data]'));
+	}
+};
 
 
 /**

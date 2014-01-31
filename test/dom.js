@@ -1,10 +1,5 @@
 var seven = require('../index.js')();
-var fs =require('fs');
-//seven.play('http://www.pogdesign.co.uk/cat/supernatural-summary',function(err,data,res){
-	//fs.readFileSync('data.txt','utf8')
-	//console.log(seven.dom(data));
 
-//});
 
 seven.play('http://www.forsky.co/',function(err,data){
 	if(err){
