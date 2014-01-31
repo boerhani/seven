@@ -1,7 +1,10 @@
-Data does reach the shredding process..
+
+Making small simple APIs from other web sites in a small module that collects information
 
 
 ## Install
+
+NPM is available for download via a simple
 
 ```
 npm install seven
@@ -9,11 +12,16 @@ npm install seven
 
 ## Usage
 
+Seven different ways you can incorporate into your application ..
+You can define your own HTTP headers or you can use the default headers
+
 ```js
 var seven = require('seven');
 
-
 ```
+
+* * *
+
 ```js
 var seven = require('seven')();
 //or
@@ -32,7 +40,7 @@ var crop = new seven({ "accept-charset" : "ISO-8859-1,utf-8;q=0.7,*;q=0.3"});
 * `clear` -  **tags**
 * `dom` -  **body**
 
-* * *
+
 
 
 
@@ -50,7 +58,7 @@ seven.play('https://news.ycombinator.com/',function(err,body,res){
 
 ```
 
-* * *
+
 
 
 
@@ -71,7 +79,7 @@ seven.play('https://news.ycombinator.com/',function(err,body,res){
 
 ```
 
-* * *
+
 
 ## Out
 
@@ -90,7 +98,7 @@ seven.play('https://news.ycombinator.com/',function(err,body,res){
 });
 
 ```
-* * *
+
 
 ## Attr
 
@@ -109,7 +117,8 @@ seven.play('https://news.ycombinator.com/',function(err,body,res){
 });
 
 ```
-* * *
+
+
 
 ## Attrkey
 
@@ -145,7 +154,7 @@ seven.play('https://news.ycombinator.com/',function(err,body,res){
 
 ```
 
-* * *
+
 
 ## Dom
 

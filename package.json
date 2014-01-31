@@ -1,7 +1,7 @@
 {
   "name": "seven",
-  "version": "0.0.2",
-  "description": "Data does reach the shredding process..",
+  "version": "0.0.3",
+  "description": "Making small simple APIs from other web sites in a small module that collects information",
   "main": "index.js",
   "repository": {
     "type": "git",
@@ -9,7 +9,8 @@
   },
   "keywords": [
     "request",
-    "process"
+    "process",
+    "Api"
   ],
   "license": "BSD-2-Clause",
   "dependencies": {
