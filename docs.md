@@ -23,14 +23,14 @@ var crop = new seven({ "accept-charset" : "ISO-8859-1,utf-8;q=0.7,*;q=0.3"});
 
 ```
 ## Methods
-* `play` - ==url== ==callback== 
-* `matchall` - ==body== ==start== ==end== 
-* `out` - ==opt==
-* `attrkey` - ==opt==
-* `attr` -  ==body== ==attr==
-* `tags` -  ==body==
-* `clear` -  ==tags==
-
+* `play` - **url**, **callback** 
+* `matchall` - **body**, **start**, **end** 
+* `out` - **opt**
+* `attrkey` - **opt**
+* `attr` -  **body**, **attr**
+* `tags` -  **body**
+* `clear` -  **tags**
+* `dom` -  **body**
 
 * * *
 
@@ -38,14 +38,14 @@ var crop = new seven({ "accept-charset" : "ISO-8859-1,utf-8;q=0.7,*;q=0.3"});
 
 ## Play
 
-* `url` - ==string==
-* `callback` -  ==err== ==body== ==res==
+* `url` - **string**
+* `callback` -  **err**, **body** ,**res**
 
 ```js
 seven.play('https://news.ycombinator.com/',function(err,body,res){
-		if(err) throw err;
+        if(err) throw err;
         else console.log(body)
-        	  console.log(res);
+              console.log(res);
 });
 
 ```
@@ -56,13 +56,13 @@ seven.play('https://news.ycombinator.com/',function(err,body,res){
 
 ## Matchall
 
-* `body` - ==string==
-* `start` -  ==string==
-* `end` -  ==string==
+* `body` - **string**
+* `start` -  **string**
+* `end` -  **string**
 
 ```js
 seven.play('https://news.ycombinator.com/',function(err,body,res){
-		if(err){
+        if(err){
         throw err;
         }else{
         var post = seven.matchall(body,'<td class="title">','</td>');
@@ -75,12 +75,12 @@ seven.play('https://news.ycombinator.com/',function(err,body,res){
 
 ## Out
 
-* `out` - ==object==
-* `@params` ==dir== ==chunk== ==clear==
+* `out` - **object**
+* `@params` **dir**, **chunk**, **clear**
 
 ```js
 seven.play('https://news.ycombinator.com/',function(err,body,res){
-		if(err){
+        if(err){
         throw err;
         }else{
         var post = seven.matchall(body,'<td class="title">','</td>');
@@ -94,13 +94,13 @@ seven.play('https://news.ycombinator.com/',function(err,body,res){
 
 ## Attr
 
-* `body` - ==string==
-* `attr` - ==string==
-* `default` - ==all== ==id== ==class== ==src== ==href== ==title==
+* `body` - **string**
+* `attr` - **string**
+* `default` - **all**, **id**, **class**, **src**, **href** ,**title**
 
 ```js
 seven.play('https://news.ycombinator.com/',function(err,body,res){
-		if(err){
+        if(err){
         throw err;
         }else{
         var post = seven.matchall(body,'<td class="title">','</td>');
@@ -113,11 +113,11 @@ seven.play('https://news.ycombinator.com/',function(err,body,res){
 
 ## Attrkey
 
-* `attr` - ==object==
+* `attr` - **object**
 
 ```js
 seven.play('https://news.ycombinator.com/',function(err,body,res){
-		if(err){
+        if(err){
         throw err;
         }else{
         var post = seven.matchall(body,'<td class="title">','</td>');
@@ -130,16 +130,34 @@ seven.play('https://news.ycombinator.com/',function(err,body,res){
 
 ## Clear
 
-* `body` - ==string==
+* `body` - **string**
 
 ```js
 seven.play('https://news.ycombinator.com/',function(err,body,res){
-		if(err){
+        if(err){
         throw err;
         }else{
         var post = seven.matchall(body,'<td class="title">','</td>');
         console.log(post[0].clear());
          console.log(post[0].clear('a')); //except tag 
+        }
+});
+
+```
+
+* * *
+
+## Dom
+
+* `body` - **string**
+
+```js
+seven.play('https://news.ycombinator.com/',function(err,body,res){
+        if(err){
+        throw err;
+        }else{
+        var doms = seven.dom(body);
+         console.log(doms); //except tag 
         }
 });
 
